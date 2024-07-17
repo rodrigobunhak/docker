@@ -1,8 +1,19 @@
 const express = require('express')
 const app = express()
 const port = 3000
+const config = {
+  host: 'db',
+  user: 'root',
+  password: 'root',
+  database: 'nodedb'
+}
+const mysql = require('mysql')
 
 app.get('/', (req, res) => {
+  const sql = `INSERT INTO people (name) VALUES ('Rodrigo')`
+  const connection = mysql.createConnection(config)
+  connection.query(sql)
+  connection.end()
   res.send('<h1>Home</h1>')
 })
 
